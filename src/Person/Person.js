@@ -1,11 +1,13 @@
 import React from 'react';
 
+import './Person.css'; // import css file
+
+
 const person = (props) => {
   return (
-    <div>
+    <div className="Person">
 
       <p
-        // 用这一行来传递method
         onClick={props.click}
       >I am {props.name}! I am {props.age} years old.</p>
 

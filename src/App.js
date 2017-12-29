@@ -11,9 +11,7 @@ class App extends Component {
     otherState : "some other values"
   }
 
-  // 传递参数 newName
   switchNameHandler = (newName) => {
-    // console.log('was clicked');
     // DON'T DO THIS: this.state.persons[0].name = "Med Cute";
     this.setState({
       persons: [

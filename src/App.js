@@ -31,10 +31,20 @@ class App extends Component {
   }
 
   render() {
+    // change the button style inline
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1x solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <h1>Hi, I am a React App.</h1>
         <button
+          style={style}
           onClick={this.switchNameHandler.bind(this, "Zihan")}
         >Switch Name</button>
         <Person

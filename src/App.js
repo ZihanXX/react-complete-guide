@@ -6,10 +6,11 @@ class App extends Component {
   state = { // can only be used in classes who extend Component
     persons: [
       {id: '1', name: 'Chris H', age: 24},
-      {id: '2', name: 'Z.X.', age: 25}
+      {id: '2', name: 'Z.X.', age: 25, children: "My hobby is: being silly."},
+      {id: '3', name: 'Big Cute', age: 0}
     ],
-    otherState : "some other values",
-    showPersons : false
+    otherState : "some other values", // not used
+    showPersons : true
   }
 
   togglePersonsHandler = () => {
@@ -29,6 +30,7 @@ class App extends Component {
     });
   }
 
+  // `event` being passed automatically by React
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex( p => {
       return p.id === id;
@@ -54,6 +56,7 @@ class App extends Component {
               key={person.id}
               name={person.name}
               age={person.age}
+              children={person.children}
               click={() => this.deleteNameHandler(index)}
               changed={(event) => this.nameChangedHandler(event, person.id)}
             />

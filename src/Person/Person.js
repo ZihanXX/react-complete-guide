@@ -6,7 +6,7 @@ const person = (props) => {
       <p
         // 用这一行来传递method
         onClick={props.click}
-      >I'm {props.name}! I'm {props.age} years old.</p>
+      >I am {props.name}! I am {props.age} years old.</p>
       <p>{props.children}</p>
     </div>
   );

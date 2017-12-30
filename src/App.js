@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import Radium, { StyleRoot } from 'radium'; // StyleRoot, WTH?
 import Person from './Person/Person';
+import './App.css';
+
 
 class App extends Component {
   state = { // can only be used in classes who extend Component
@@ -46,7 +48,22 @@ class App extends Component {
     });
   }
 
+
   render() {
+
+    const buttonStyle = {
+      backgroundColor: '#ee7777',
+      color: 'white',
+      font: 'inherit',
+      border: '1x solid grey',
+      padding: '8px',
+      cursor: 'pointer',
+      marginBottom: '20px',
+      ':hover': {
+        fontStyle: 'italic'
+      }
+    }
+
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -61,42 +78,39 @@ class App extends Component {
               changed={(event) => this.nameChangedHandler(event, person.id)}
             />
           })}
-          {/*<Person*/}
-            {/*name={this.state.persons[0].name}*/}
-            {/*age={this.state.persons[0].age}*/}
-          {/*/>*/}
-          {/*<Person*/}
-            {/*name={this.state.persons[1].name}*/}
-            {/*age={this.state.persons[1].age}*/}
-            {/*click={this.switchNameHandler.bind(this, "Little Cute")}*/}
-            {/*changed={this.nameChangedHandler}*/}
-          {/*>My Hobbies: Being silly.</Person>*/}
         </div>
       );
+    } else {
+      buttonStyle.backgroundColor = '#447777';
     }
 
-    const buttonStyle = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1x solid blue',
-      padding: '8px',
-      cursor: 'pointer'
+
+    const subTitleClasses = [];
+    if (this.state.persons.length <= 2) {
+      subTitleClasses.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      subTitleClasses.push('bold');
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I am a React App.</h1>
+      <StyleRoot>
+        <div className="App">
 
-        <button
-          style={buttonStyle}
-          onClick={this.togglePersonsHandler}
-        >Toggle Persons</button>
+          <h1>Hi, I am a React App.</h1>
+          <p className={subTitleClasses.join(' ')}>This is working!</p>
 
-        {persons}
+          <button
+            style={buttonStyle}
+            onClick={this.togglePersonsHandler}
+          >Toggle Persons</button>
 
-      </div>
+          {persons}
+
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
